@@ -1,0 +1,108 @@
+#{extends 'main.html' /} #{set title:'Home (Secure)' /}
+
+<style>
+<!--
+dl.gallery {
+	margin: 2em 0 1em 1em;
+	padding: 0 0 10px 0;
+	width: 20em;
+	float: left;
+}
+
+.gallery dt {
+	background-color: #131210;
+	color: #959289;
+	padding: .5em .5em;
+	font-weight: bold;
+	text-align: center;
+	text-transform: uppercase;
+	border-left: 1px solid #131210;
+	border-right: 1px solid #131210;
+	border-top: 1px solid #131210;
+}
+
+.gallery dt img {
+	border: 1px solid #000;
+	width: 100px;
+	height: 100px;
+}
+
+
+.gallery dd {
+	margin: 0 0 1em 0;
+	background: #DBD8D8;
+	text-align: center;
+	padding: 1em .5em;
+	font-style: italic;
+	border-left: 1px solid #131210;
+	border-right: 1px solid #131210;
+	border-bottom: 1px solid #131210;
+}
+
+.gallery dd img {
+	border: 1px solid #000;
+	width: 100px;
+	height: 100px;
+}
+-->
+</style>
+
+<h1>Welcome to Secure Zone</h1>
+
+<a href="@{Application.index()}">index</a>
+<a href="@{OAuth2Secure.logout()}">logout</a>
+
+<br>
+
+<dl class="gallery">
+	<dt>Family Name</dt>
+	<dd>${userinfo.family_name}</dd>
+</dl>
+<dl class="gallery">
+	<dt>Family Name</dt>
+	<dd>${userinfo.name}</dd>
+</dl>
+<dl class="gallery">
+	<dt>Picture</dt>
+	<dd>
+		<img alt="Picture" src="${userinfo.picture}">
+	</dd>
+</dl>
+<dl class="gallery">
+	<dt>Locale</dt>
+	<dd>${userinfo.locale}</dd>
+</dl>
+<dl class="gallery">
+	<dt>Gender</dt>
+	<dd>${userinfo.gender}</dd>
+</dl>
+<dl class="gallery">
+	<dt>Email</dt>
+	<dd>${userinfo.email}</dd>
+</dl>
+<dl class="gallery">
+	<dt>Birthday</dt>
+	<dd>${userinfo.birthday}</dd>
+</dl>
+<dl class="gallery">
+	<dt>Link</dt>
+	<dd>
+		<a href="${userinfo.link}">link</a>
+	</dd>
+</dl>
+<dl class="gallery">
+	<dt>Given Name</dt>
+	<dd>${userinfo.given_name}</dd>
+</dl>
+<dl class="gallery">
+	<dt>Timezone</dt>
+	<dd>${userinfo.timezone}</dd>
+</dl>
+<dl class="gallery">
+	<dt>Id</dt>
+	<dd>${userinfo.id}</dd>
+</dl>
+<dl class="gallery">
+	<dt>verified email ?</dt>
+	<dd>${userinfo.verified_email}</dd>
+</dl>

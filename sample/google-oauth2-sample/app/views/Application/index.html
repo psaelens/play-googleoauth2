@@ -1,0 +1,32 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+<h1>
+<a href="https://developers.google.com/accounts/docs/OAuth2">
+Using OAuth 2.0 to Access Google APIs</a>
+</h1>
+
+<p>Below is a trivial example of how to use Google's OAuth 2.0 endpoint to gain access to a Google API. It's a Python web application running on App Engine. The flow of the
+example is fairly straightforward:
+</p>
+<ol>
+    <li>When the application loads, it shows the you a "Login" link.</li>
+    <li>When you click that link, you are asked to login to Google and asked to release basic account
+    information to the application (user consent).</li>
+    <li>If you grant consent, the application receives an access token.</li>
+    <li>Once it has the access token, the application presents the access token to
+    the Google API that provides basic account information (<code>https://www.googleapis.com/oauth2/v1/userinfo</code>)</li>
+    <li>The application renders the basic account information in a simple table.</li>
+</ol>
+
+#{if session.username}
+<h3>You're ${session.username} on Google</h3>
+<a href="@{OAuth2Secure.logout()}">logout</a>
+#{/if}
+
+#{else}
+<a href="@{OAuth2Secure.login()}">login</a>
+#{/else}
+
+<a href="@{SecureApplication.index()}">secure</a>
+

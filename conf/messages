@@ -1,0 +1,5 @@
+# Default google-oauth2 messages
+# You can specialize this file for each language.
+# For exemple, for french create a messages.fr file
+
+#google-oauth2.name=google-oauth2

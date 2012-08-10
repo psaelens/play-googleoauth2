@@ -1,0 +1,17 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                                       Application.index
+
+# OAuth2 routes
+GET     /login                                  OAuth2Secure.login
+GET     /oauth2callback                         OAuth2Secure.authenticate
+GET     /logout                                 OAuth2Secure.logout
+
+# Map static resources from the /app/public folder to the /public path
+GET     /public/                                staticDir:public
+
+# Catch all
+*       /{controller}/{action}                  {controller}.{action}
