@@ -1,7 +1,9 @@
 package controllers;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
@@ -20,6 +22,7 @@ import play.mvc.Controller;
 import play.mvc.Http;
 import play.mvc.Http.Request;
 import play.mvc.Http.Response;
+import play.mvc.Router.ActionDefinition;
 import play.mvc.results.BadRequest;
 import play.mvc.results.Result;
 import play.utils.Java;
@@ -154,9 +157,23 @@ public class OAuth2Secure extends Controller {
 	// ~~~ Utils
 
 	static String authURL() {
-		return play.mvc.Router.getFullUrl("OAuth2Secure.authenticate");
+		return getFullUrl("OAuth2Secure.authenticate");
 	}
 
+    public static String getFullUrl(String action, Map<String, Object> args) {
+        ActionDefinition actionDefinition = play.mvc.Router.reverse(action, args);
+        String base = Play.configuration.getProperty("application.baseUrl", "application.baseUrl");
+        if (actionDefinition.method.equals("WS")) {
+            return base.replaceFirst("https?", "ws") + actionDefinition;
+        }
+        return base + actionDefinition;
+    }
+
+    public static String getFullUrl(String action) {
+        // Note the map is not <code>Collections.EMPTY_MAP</code> because it will be copied and changed.
+        return getFullUrl(action, new HashMap<String, Object>(16));
+    }
+    
 	static void redirectToOriginalURL() throws Throwable {
 		String url = flash.get("url");
 		if (url == null) {
