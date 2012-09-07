@@ -1,4 +1,4 @@
-self: play -> google-oauth2 0.1
+self: play -> google-oauth2 0.2
 
 require:
     - play
